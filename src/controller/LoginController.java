@@ -1,8 +1,10 @@
 package controller;
 
 import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -19,7 +21,13 @@ public class LoginController {
     public JFXTextField txtUserName;
     public JFXPasswordField txtPassword;
     public AnchorPane root;
+    public JFXComboBox cmbUserRole;
 
+    public void initialize(){
+        ObservableList items = cmbUserRole.getItems();
+        items.add("Admin");
+        items.add("Reception");
+    }
     public void btnLoginOnAction(ActionEvent actionEvent) throws IOException {
         Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/view/DashBoard.fxml")));
         Stage primaryStage = (Stage) this.root.getScene().getWindow();
