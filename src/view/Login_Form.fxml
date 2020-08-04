@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="root" prefHeight="400.0" prefWidth="233.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.LoginController">
+   <children>
+      <JFXButton fx:id="btnLogin" layoutY="319.0" onAction="#btnLoginOnAction" prefHeight="52.0" prefWidth="276.0" style="-fx-background-color: #ffcc00;" text="LOGIN">
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </JFXButton>
+      <Label fx:id="lblRegister" layoutX="101.0" layoutY="374.0" onMouseClicked="#lblRegisterOnMouseClicked" text="R e g i s t e r" textFill="#2b00ff" underline="true">
+         <font>
+            <Font size="11.0" />
+         </font>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Label>
+      <JFXTextField fx:id="txtUserName" focusColor="#756805" labelFloat="true" layoutX="21.0" layoutY="182.0" prefHeight="26.0" prefWidth="240.0" promptText="User Name" />
+      <JFXPasswordField fx:id="txtPassword" focusColor="#756805" labelFloat="true" layoutX="21.0" layoutY="240.0" prefHeight="26.0" prefWidth="240.0" promptText="Password" />
+      <Label layoutX="75.0" prefHeight="39.0" prefWidth="133.0" text="Parking_P">
+         <font>
+            <Font name="Abyssinica SIL" size="28.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
