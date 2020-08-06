@@ -1,13 +1,18 @@
 package controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDrawer;
 import com.jfoenix.controls.JFXHamburger;
+import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -27,6 +32,17 @@ public class DashBoardController {
     public Pane paneRegisterNewUser;
     public Pane paneSettings;
     public AnchorPane root;
+    public ListView lstCustomers;
+    public Label lblCustomerID;
+    public JFXTextField txtCustomerName;
+    public JFXTextField txtCustomerAdress;
+    public JFXTextField txtCustomerContactNumber;
+    public JFXTextField txtCustomerNIC;
+    public JFXTextField txtCarNumber;
+    public JFXTextField txtCarModel;
+    public JFXButton btnSaveCustomer;
+    public JFXButton btnDeleteCustomer;
+    public JFXButton btnAddNewCustomer;
 
     public void initialize() throws IOException {
 
@@ -163,5 +179,14 @@ public class DashBoardController {
         paneManagePackages.setVisible(false);
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(false);
+    }
+
+    public void btnSaveCustomerOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnDeleteCustomerOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnAddNewCustomerOnAction(ActionEvent actionEvent) {
     }
 }
