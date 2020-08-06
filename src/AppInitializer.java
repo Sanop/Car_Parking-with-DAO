@@ -17,7 +17,7 @@ public class AppInitializer extends Application {
         Parent root = FXMLLoader.load(this.getClass().getResource("/view/Login_Form.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("Login To Taxi_P");
+        primaryStage.setTitle("Login To Parking_P");
         primaryStage.centerOnScreen();
         primaryStage.show();
     }

@@ -5,11 +5,13 @@ import com.jfoenix.controls.JFXHamburger;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.Optional;
@@ -24,6 +26,7 @@ public class DashBoardController {
     public Pane paneManageCarCells;
     public Pane paneRegisterNewUser;
     public Pane paneSettings;
+    public AnchorPane root;
 
     public void initialize() throws IOException {
 
@@ -72,7 +75,19 @@ public class DashBoardController {
                             load_Settings();
                             break;
                         case "Log Out":
-
+                            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Do you really want to log out", ButtonType.YES, ButtonType.NO);
+                            Optional<ButtonType> buttonType = alert.showAndWait();
+                            if(buttonType.get().equals(ButtonType.YES)){
+                                try {
+                                    Scene scene = new Scene(FXMLLoader.load(this.getClass().getResource("/view/Login_Form.fxml")));
+                                    Stage primaryStage = (Stage) this.root.getScene().getWindow();
+                                    primaryStage.setScene(scene);
+                                    primaryStage.setTitle("Login To Parking_P");
+                                    primaryStage.centerOnScreen();
+                                } catch (IOException ioException) {
+                                    ioException.printStackTrace();
+                                }
+                            }
                             break;
                     }
                 });
