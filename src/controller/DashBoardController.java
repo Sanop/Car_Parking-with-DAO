@@ -5,10 +5,12 @@ import business.BOType;
 import business.SuperBO;
 import business.custom.CarCellBO;
 import business.custom.CustomerBO;
+import business.custom.DefaultPaymentBO;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import entity.CarCell;
 import entity.Customer;
+import entity.DefaultPayment;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -26,6 +28,7 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -33,6 +36,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 
 public class DashBoardController {
     public JFXHamburger jfxHamburger;
@@ -117,14 +121,16 @@ public class DashBoardController {
     public Label lblK3;
     public JFXComboBox<String> cmbCustomerID;
     public JFXTextField txtVehicalInNumber;
-    public JFXComboBox<String> cmdCellID;
-    public Label lblInTime;
     public JFXTextField txtOutTime;
     public JFXButton btnIN;
     public Label lblDate;
+    public JFXComboBox<String> cmbCellID;
+    public Label lblTimeCreation;
+    public Label lblInvoiceNumber;
 
     CustomerBO customerBO = BOFactory.getInstance().getBO(BOType.CUSTOMER);
     CarCellBO carCellBO = BOFactory.getInstance().getBO(BOType.CARCELL);
+    DefaultPaymentBO defaultPaymentBO = BOFactory.getInstance().getBO(BOType.DEFAULT_PAYMENT);
 
     public void initialize(){
 
@@ -323,8 +329,32 @@ public class DashBoardController {
         paneSettings.setVisible(false);
 
         setCellColors();
+        loadCustomerCombo();
+        loadNotReservedVehicalList();
+
+        loadInvoiceNumber();
 
     }
+
+    private void loadInvoiceNumber() {
+        Random r = new Random();
+        lblInvoiceNumber.setText(r.nextInt(100000000)+"");
+    }
+
+    private void loadNotReservedVehicalList() {
+        try {
+            ResultSet notReservedCells = carCellBO.getNotReservedCells();
+            ObservableList<String> items = cmbCellID.getItems();
+            items.clear();
+
+            while(notReservedCells.next()){
+                items.add(notReservedCells.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     private void setCellColors(){
         try {
@@ -804,11 +834,39 @@ public class DashBoardController {
     }
 
     public void btnINOnAction(ActionEvent actionEvent) {
+        String customerID;
+        if(cmbCustomerID.getSelectionModel().getSelectedItem()== null){
+            customerID = null;
+        }else{
+            customerID = cmbCustomerID.getSelectionModel().getSelectedItem();
+        }
 
-    }
-
-    public void btnINOutAction(ActionEvent actionEvent) {
-
+        if(txtVehicalInNumber.getText().trim().isEmpty()){
+            txtVehicalInNumber.requestFocus();
+        }else if(cmbCellID.getSelectionModel().getSelectedItem() == null){
+            cmbCellID.requestFocus();
+        }else if(txtOutTime.getText().trim().isEmpty()){
+            txtOutTime.requestFocus();
+        }else if(txtOutTime.getText().trim().matches("\\d{2}[.]\\d{2}")){
+            lblTimeCreation.setVisible(false);
+            Random r = new Random();
+            DefaultPayment entity = new DefaultPayment(customerID,cmbCellID.getSelectionModel().getSelectedItem(),getCurrentTime(),txtOutTime.getText(),lblInvoiceNumber.getText());
+            try {
+                defaultPaymentBO.add(entity);
+                setCellColors();
+                cmbCustomerID.getSelectionModel().select(null);
+                txtVehicalInNumber.clear();
+                cmbCellID.getSelectionModel().select(null);
+                txtOutTime.clear();
+                cmbCustomerID.requestFocus();
+                loadInvoiceNumber();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }else{
+            lblTimeCreation.setVisible(true);
+            txtOutTime.requestFocus();
+        }
     }
 
     public String getCurrentTime(){
@@ -825,6 +883,20 @@ public class DashBoardController {
     }
 
     public void loadCustomerCombo(){
+        try {
+            ResultSet customerIdList = customerBO.getCustomerIdList();
+            ObservableList<String> items = cmbCustomerID.getItems();
+            items.clear();
+
+            while (customerIdList.next()){
+                items.add(customerIdList.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void btnOutAction(ActionEvent actionEvent) {
 
     }
 }

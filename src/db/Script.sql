@@ -13,7 +13,7 @@ carModel varchar(100)not null
 );
 
 create table carCells(
-cellid varchar(10)not null,
+cellid varchar(10)primary key not null,
 status varchar(20)not null
 );
 
@@ -30,7 +30,7 @@ insert into carCells values('lblC2','not reserved');
 insert into carCells values('lblC3','not reserved');
 insert into carCells values('lblC4','not reserved');
 insert into carCells values('lblD1','not reserved');
-insert into carCells values('lblD1','not reserved');
+insert into carCells values('lblD2','not reserved');
 insert into carCells values('lblD3','not reserved');
 insert into carCells values('lblD4','not reserved');
 insert into carCells values('lblE1','not reserved');
@@ -73,3 +73,22 @@ insert into carCells values('lblN1','not reserved');
 insert into carCells values('lblN2','not reserved');
 insert into carCells values('lblN3','not reserved');
 insert into carCells values('lblN4','not reserved');
+
+
+create table defaultPayment(
+id int not null auto_increment,
+cid varchar(20),
+cellId varchar(20)not null,
+inTime varchar(20)not null,
+outTime varchar(20)not null,
+constraint primary key(id),
+constraint foreign key(cellId)references carCells(cellId)
+);
+
+alter table defaultPayment add invoiceNumber varchar(100);
+
+create table payment(
+invoice varchar(100)not null,
+payment varchar(100)not null,
+date varchar(20)not null
+);

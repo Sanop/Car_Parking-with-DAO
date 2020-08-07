@@ -2,6 +2,7 @@ package dao;
 
 import dao.custom.impl.CarCellDAOImpl;
 import dao.custom.impl.CustomerDAOImpl;
+import dao.custom.impl.DefaultPaymentDAOImpl;
 
 public class DAOFactory {
     private static DAOFactory daoFactory;
@@ -20,6 +21,8 @@ public class DAOFactory {
                 return (T) new CustomerDAOImpl();
             case CARCELL:
                 return (T) new CarCellDAOImpl();
+            case DEFAULT_PAYMENT:
+                return (T) new DefaultPaymentDAOImpl();
             default:
                 return null;
         }

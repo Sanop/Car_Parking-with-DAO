@@ -21,6 +21,11 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
+    public ResultSet getCustomerIDList() throws Exception {
+        return CrudUtil.execute("SELECT id FROM customer");
+    }
+
+    @Override
     public List<Customer> findAll() throws Exception {
 
         ResultSet rst = CrudUtil.execute("SELECT * FROM customer");

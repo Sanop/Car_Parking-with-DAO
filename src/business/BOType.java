@@ -1,5 +1,5 @@
 package business;
 
 public enum BOType {
-    CUSTOMER,CARCELL
+    CUSTOMER,CARCELL,DEFAULT_PAYMENT
 }

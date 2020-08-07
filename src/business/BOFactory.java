@@ -2,6 +2,7 @@ package business;
 
 import business.custom.impl.CarCellBOImpl;
 import business.custom.impl.CustomerBOImpl;
+import business.custom.impl.DefaultPaymentBOImpl;
 
 public class BOFactory {
 
@@ -21,6 +22,8 @@ public class BOFactory {
                 return (T) new CustomerBOImpl();
             case CARCELL:
                 return (T) new CarCellBOImpl();
+            case DEFAULT_PAYMENT:
+                return (T) new DefaultPaymentBOImpl();
             default:
                 return null;
         }

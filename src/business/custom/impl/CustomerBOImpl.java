@@ -7,6 +7,7 @@ import dao.SuperDAO;
 import dao.custom.CustomerDAO;
 import entity.Customer;
 
+import java.sql.ResultSet;
 import java.util.List;
 
 public class CustomerBOImpl implements CustomerBO {
@@ -52,6 +53,12 @@ public class CustomerBOImpl implements CustomerBO {
     public boolean updateCustomer(String name, String address, String contact, String nic, String carNumber, String carModel, String customerId) throws Exception {
         CustomerDAO customerDAO = DAOFactory.getInstance().getDAO(DAOType.CUSTOMER);
         return customerDAO.update(new Customer(customerId,name,address,contact,nic,carNumber,carNumber));
+    }
+
+    @Override
+    public ResultSet getCustomerIdList() throws Exception {
+        CustomerDAO customerDAO = DAOFactory.getInstance().getDAO(DAOType.CUSTOMER);
+        return customerDAO.getCustomerIDList();
     }
 
 }

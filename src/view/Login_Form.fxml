@@ -6,6 +6,8 @@
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -35,5 +37,10 @@
          </font>
       </Label>
       <JFXComboBox fx:id="cmbUserRole" labelFloat="true" layoutX="21.0" layoutY="168.0" prefHeight="26.0" prefWidth="240.0" promptText="User Role" />
+      <ImageView fitHeight="126.0" fitWidth="150.0" layoutX="75.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/p-character-alphabet-letter-32872.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

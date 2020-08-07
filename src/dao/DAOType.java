@@ -1,5 +1,5 @@
 package dao;
 
 public enum DAOType {
-    CUSTOMER,CARCELL
+    CUSTOMER,CARCELL,DEFAULT_PAYMENT
 }
