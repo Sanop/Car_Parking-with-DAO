@@ -189,4 +189,11 @@ public class DashBoardController {
 
     public void btnAddNewCustomerOnAction(ActionEvent actionEvent) {
     }
+
+    public void btnINOnAction(ActionEvent actionEvent) {
+    }
+
+    public void btnINOutAction(ActionEvent actionEvent) {
+
+    }
 }
