@@ -1,5 +1,6 @@
 package dao;
 
+import dao.custom.impl.CarCellDAOImpl;
 import dao.custom.impl.CustomerDAOImpl;
 
 public class DAOFactory {
@@ -17,6 +18,8 @@ public class DAOFactory {
         switch (daoType){
             case CUSTOMER:
                 return (T) new CustomerDAOImpl();
+            case CARCELL:
+                return (T) new CarCellDAOImpl();
             default:
                 return null;
         }

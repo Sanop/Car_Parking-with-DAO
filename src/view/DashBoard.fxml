@@ -42,8 +42,8 @@
             <Label fx:id="lblG1" layoutX="365.0" layoutY="69.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblH1" layoutX="425.0" layoutY="69.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblI1" layoutX="485.0" layoutY="69.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblj1" layoutX="545.0" layoutY="69.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblk1" layoutX="604.0" layoutY="69.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblJ1" layoutX="545.0" layoutY="69.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblK1" layoutX="604.0" layoutY="69.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblL1" layoutX="664.0" layoutY="69.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblM1" layoutX="722.0" layoutY="69.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblN1" layoutX="782.0" layoutY="69.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
@@ -56,8 +56,8 @@
             <Label fx:id="lblG4" layoutX="363.0" layoutY="240.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblH4" layoutX="423.0" layoutY="240.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblI4" layoutX="483.0" layoutY="240.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblj4" layoutX="543.0" layoutY="240.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblk4" layoutX="602.0" layoutY="240.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblJ4" layoutX="543.0" layoutY="240.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblK4" layoutX="602.0" layoutY="240.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblL4" layoutX="662.0" layoutY="240.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblM4" layoutX="720.0" layoutY="240.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblN4" layoutX="780.0" layoutY="240.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
@@ -70,8 +70,8 @@
             <Label fx:id="lblG2" layoutX="364.0" layoutY="124.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblH2" layoutX="424.0" layoutY="124.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblI2" layoutX="484.0" layoutY="124.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblj2" layoutX="544.0" layoutY="124.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblk2" layoutX="603.0" layoutY="124.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblJ2" layoutX="544.0" layoutY="124.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblK2" layoutX="603.0" layoutY="124.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblL2" layoutX="663.0" layoutY="124.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblM2" layoutX="721.0" layoutY="124.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblN2" layoutX="781.0" layoutY="124.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
@@ -84,8 +84,8 @@
             <Label fx:id="lblG3" layoutX="364.0" layoutY="182.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblH3" layoutX="424.0" layoutY="182.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblI3" layoutX="484.0" layoutY="182.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblj3" layoutX="544.0" layoutY="182.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblk3" layoutX="603.0" layoutY="182.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblJ3" layoutX="544.0" layoutY="182.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblK3" layoutX="603.0" layoutY="182.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblL3" layoutX="663.0" layoutY="182.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblM3" layoutX="721.0" layoutY="182.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label fx:id="lblN3" layoutX="781.0" layoutY="182.0" prefHeight="48.0" prefWidth="50.0" style="-fx-background-color: #006699;" textFill="WHITE" />
@@ -109,15 +109,13 @@
             <Label layoutX="838.0" layoutY="256.0" text="4" />
             <Label layoutX="248.0" layoutY="27.0" text="Reserved Cells" />
             <Label layoutX="110.0" layoutY="25.0" prefHeight="20.0" prefWidth="21.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label layoutX="355.0" layoutY="25.0" prefHeight="20.0" prefWidth="21.0" style="-fx-background-color: #00cc99;" textFill="WHITE" />
+            <Label layoutX="355.0" layoutY="25.0" prefHeight="20.0" prefWidth="21.0" style="-fx-background-color: #cccc00;" textFill="WHITE" />
             <Separator layoutX="9.0" layoutY="298.0" prefHeight="9.0" prefWidth="839.0" />
             <JFXComboBox fx:id="cmbCustomerID" editable="true" labelFloat="true" layoutX="30.0" layoutY="326.0" prefHeight="26.0" prefWidth="211.0" promptText="Customer ID" />
             <JFXTextField fx:id="txtVehicalInNumber" labelFloat="true" layoutX="267.0" layoutY="326.0" prefHeight="26.0" prefWidth="257.0" promptText="Vehicle Number" />
-            <JFXComboBox fx:id="txtCellID" labelFloat="true" layoutX="549.0" layoutY="326.0" prefHeight="26.0" prefWidth="165.0" promptText="Cell ID" />
-            <Label layoutX="30.0" layoutY="385.0" prefHeight="26.0" prefWidth="63.0" text="In TIme :" />
-            <Label fx:id="lblInTime" layoutX="104.0" layoutY="385.0" prefHeight="26.0" prefWidth="63.0" text="00.00" />
-            <JFXTextField fx:id="txtOutTime" labelFloat="true" layoutX="197.0" layoutY="379.0" promptText="Out Time" />
-            <JFXButton fx:id="btnIN" layoutX="383.0" layoutY="379.0" onAction="#btnINOnAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #339933;" text="IN" textFill="WHITE">
+            <JFXComboBox fx:id="cmdCellID" labelFloat="true" layoutX="549.0" layoutY="326.0" prefHeight="26.0" prefWidth="165.0" promptText="Cell ID" />
+            <JFXTextField fx:id="txtOutTime" labelFloat="true" layoutX="33.0" layoutY="379.0" promptText="Out Time" />
+            <JFXButton fx:id="btnIN" layoutX="224.0" layoutY="370.0" onAction="#btnINOnAction" prefHeight="36.0" prefWidth="126.0" style="-fx-background-color: #339933;" text="Enter To Park" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -230,5 +228,7 @@
             <Image url="@../images/p-character-alphabet-letter-32872.png" />
          </image>
       </ImageView>
+      <Label fx:id="lblDate" layoutX="905.0" layoutY="606.0" prefHeight="16.0" prefWidth="126.0" />
+      <Label layoutX="826.0" layoutY="605.0" prefHeight="16.0" prefWidth="85.0" text="Today is :-" />
    </children>
 </AnchorPane>

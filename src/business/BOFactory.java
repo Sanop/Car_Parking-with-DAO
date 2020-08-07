@@ -1,5 +1,6 @@
 package business;
 
+import business.custom.impl.CarCellBOImpl;
 import business.custom.impl.CustomerBOImpl;
 
 public class BOFactory {
@@ -18,6 +19,8 @@ public class BOFactory {
         switch (boType){
             case CUSTOMER:
                 return (T) new CustomerBOImpl();
+            case CARCELL:
+                return (T) new CarCellBOImpl();
             default:
                 return null;
         }
