@@ -24,7 +24,7 @@
          </cursor>
       </JFXHamburger>
       <JFXDrawer fx:id="jfxDrawer" layoutX="-2.0" layoutY="97.0" prefHeight="506.0" prefWidth="175.0" />
-      <Pane fx:id="paneHandleCarPark" layoutX="173.0" layoutY="-1.0" prefHeight="604.0" prefWidth="857.0" style="-fx-background-color: #ffffff;">
+      <Pane fx:id="paneHandleCarPark" layoutX="173.0" layoutY="-1.0" prefHeight="604.0" prefWidth="857.0" style="-fx-background-color: #ffffff;" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffcc00" height="20.0" layoutY="1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="857.0" />
             <Label layoutX="338.0" layoutY="3.0" prefHeight="16.0" prefWidth="182.0" text="H a n d l e   C a r   P a r k">
@@ -153,7 +153,10 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Label>
-            <ListView fx:id="lstCustomers" layoutX="562.0" layoutY="71.0" prefHeight="497.0" prefWidth="281.0" />
+            <ListView fx:id="lstCustomers" layoutX="562.0" layoutY="71.0" prefHeight="497.0" prefWidth="281.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ListView>
             <Label layoutX="562.0" layoutY="48.0" prefHeight="16.0" prefWidth="165.0" text="Registerd Customers" />
             <Separator layoutX="537.0" layoutY="35.0" orientation="VERTICAL" prefHeight="549.0" prefWidth="0.0" />
             <Label layoutX="334.0" layoutY="74.0" text="Customer ID :" />
@@ -168,7 +171,7 @@
                   <Font name="System Bold" size="13.0" />
                </font>
             </Label>
-            <JFXTextField fx:id="txtCarNumber" labelFloat="true" layoutX="48.0" layoutY="310.0" prefHeight="26.0" prefWidth="412.0" promptText="Car Number" />
+            <JFXTextField fx:id="txtCarNumber" labelFloat="true" layoutX="48.0" layoutY="310.0" prefHeight="26.0" prefWidth="412.0" promptText="Vehical Number" />
             <JFXTextField fx:id="txtCarModel" labelFloat="true" layoutX="49.0" layoutY="361.0" prefHeight="26.0" prefWidth="412.0" promptText="Car Model" />
             <JFXButton fx:id="btnSaveCustomer" layoutX="307.0" layoutY="416.0" onAction="#btnSaveCustomerOnAction" prefHeight="26.0" prefWidth="70.0" style="-fx-background-color: #339933;" text="Save" textFill="WHITE">
                <cursor>
@@ -181,6 +184,21 @@
                </cursor>
             </JFXButton>
             <JFXButton fx:id="btnAddNewCustomer" layoutX="295.0" layoutY="28.0" onAction="#btnAddNewCustomerOnAction" prefHeight="36.0" prefWidth="165.0" style="-fx-background-color: #006699;" text="+ Add New Customer" textFill="WHITE" />
+            <Label fx:id="lblCustomerNameCharacters" layoutX="322.0" layoutY="110.0" text="Please Enter Only Charachters" textFill="RED" visible="false">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCustomerContact" layoutX="221.0" layoutY="200.0" text="Please Enter Contact in Correct Format(xxx-xxxxxxx)" textFill="RED" visible="false">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblCustomerNIC" layoutX="242.0" layoutY="245.0" text="Please Enter NIC in Correct Format(xxxxxxxxxV)" textFill="RED" visible="false">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="paneManagePackages" layoutX="173.0" layoutY="-1.0" prefHeight="604.0" prefWidth="857.0" visible="false">
