@@ -121,23 +121,22 @@
                </cursor>
             </JFXButton>
             <Separator layoutX="10.0" layoutY="417.0" prefHeight="9.0" prefWidth="839.0" />
-            <JFXTextField fx:id="txtOutVehicleNumber" labelFloat="true" layoutX="24.0" layoutY="438.0" prefHeight="26.0" prefWidth="257.0" promptText="Vehicle Number" />
-            <JFXTextField fx:id="txtOutCellID" labelFloat="true" layoutX="295.0" layoutY="438.0" prefHeight="26.0" prefWidth="85.0" promptText="Cell ID" />
-            <Label layoutX="25.0" layoutY="480.0" prefHeight="26.0" prefWidth="63.0" text="In TIme :" />
-            <Label fx:id="lblInTime" layoutX="99.0" layoutY="480.0" prefHeight="26.0" prefWidth="63.0" text="00.00" />
-            <Label layoutX="25.0" layoutY="513.0" prefHeight="26.0" prefWidth="70.0" text="Out TIme :" />
-            <Label fx:id="lblOutTime" layoutX="101.0" layoutY="515.0" prefHeight="26.0" prefWidth="63.0" text="00.00" />
-            <Label layoutX="24.0" layoutY="543.0" prefHeight="26.0" prefWidth="111.0" text="Extra Payment :" />
-            <Label fx:id="lblExtraPayment" layoutX="137.0" layoutY="544.0" prefHeight="26.0" prefWidth="63.0" text="00.00" />
-            <Label layoutX="203.0" layoutY="493.0" prefHeight="48.0" prefWidth="137.0" text="Net Payment :">
+            <JFXTextField fx:id="txtOutCellID" editable="false" labelFloat="true" layoutX="345.0" layoutY="439.0" prefHeight="26.0" prefWidth="85.0" promptText="Cell ID" />
+            <Label layoutX="344.0" layoutY="486.0" prefHeight="26.0" prefWidth="63.0" text="In TIme :" />
+            <Label fx:id="lblInTime" layoutX="410.0" layoutY="488.0" prefHeight="26.0" prefWidth="63.0" text="00.00" />
+            <Label layoutX="344.0" layoutY="519.0" prefHeight="26.0" prefWidth="70.0" text="Out TIme :" />
+            <Label fx:id="lblOutTime" layoutX="420.0" layoutY="520.0" prefHeight="26.0" prefWidth="63.0" text="00.00" />
+            <Label layoutX="343.0" layoutY="549.0" prefHeight="26.0" prefWidth="111.0" text="Extra Payment :" />
+            <Label fx:id="lblExtraPayment" layoutX="456.0" layoutY="550.0" prefHeight="26.0" prefWidth="63.0" text="00.00" />
+            <Label layoutX="522.0" layoutY="499.0" prefHeight="48.0" prefWidth="137.0" text="Net Payment :">
                <font>
                   <Font size="19.0" />
                </font></Label>
-            <Label fx:id="lblNetPayment" layoutX="345.0" layoutY="493.0" prefHeight="48.0" prefWidth="63.0" text="00.00">
+            <Label fx:id="lblNetPayment" layoutX="664.0" layoutY="499.0" prefHeight="48.0" prefWidth="63.0" text="00.00">
                <font>
                   <Font size="19.0" />
                </font></Label>
-            <JFXButton fx:id="btnOut" layoutX="306.0" layoutY="538.0" onAction="#btnOutAction" prefHeight="36.0" prefWidth="98.0" style="-fx-background-color: #339933;" text="Pay" textFill="WHITE">
+            <JFXButton fx:id="btnOut" layoutX="625.0" layoutY="544.0" onAction="#btnOutAction" prefHeight="36.0" prefWidth="98.0" style="-fx-background-color: #339933;" text="Pay" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -149,6 +148,9 @@
             </Label>
             <Label fx:id="lblInvoiceNumber" layoutX="731.0" layoutY="329.0" prefHeight="20.0" prefWidth="117.0" textAlignment="RIGHT" />
             <Label layoutX="733.0" layoutY="313.0" text="Invoice Number" />
+            <JFXTextField fx:id="txtInvoiceNumber" labelFloat="true" layoutX="28.0" layoutY="442.0" prefHeight="26.0" prefWidth="190.0" promptText="Invoice Number" />
+            <JFXButton fx:id="btnSearchInvoice" layoutX="224.0" layoutY="432.0" onAction="#btnSearchInvoiceOnAction" prefHeight="36.0" prefWidth="90.0" style="-fx-background-color: #006699;" text="Search" textFill="WHITE" />
+            <Separator layoutX="329.0" layoutY="432.0" orientation="VERTICAL" prefHeight="160.0" prefWidth="7.0" />
          </children>
       </Pane>
       <Pane fx:id="paneHandlePackages" layoutX="173.0" layoutY="-1.0" prefHeight="604.0" prefWidth="857.0" visible="false">

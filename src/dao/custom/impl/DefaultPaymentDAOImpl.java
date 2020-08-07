@@ -54,4 +54,9 @@ public class DefaultPaymentDAOImpl implements DefaultPaymentDAO {
     public boolean delete(Integer pk) throws Exception {
         return CrudUtil.execute("DELETE FROM defaultPayment WHERE id = ?",pk);
     }
+
+    @Override
+    public ResultSet searchByInvoice(String invoice) throws Exception {
+        return CrudUtil.execute("SELECT * FROM defaultPayment WHERE invoiceNumber = ?",invoice);
+    }
 }

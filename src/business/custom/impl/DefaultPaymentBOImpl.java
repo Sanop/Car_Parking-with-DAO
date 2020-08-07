@@ -11,6 +11,7 @@ import entity.CarCell;
 import entity.DefaultPayment;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 
 public class DefaultPaymentBOImpl implements DefaultPaymentBO {
 
@@ -79,5 +80,10 @@ public class DefaultPaymentBOImpl implements DefaultPaymentBO {
         }finally{
             connection.setAutoCommit(true);
         }
+    }
+
+    @Override
+    public ResultSet searchByInvoice(String invoice) throws Exception {
+        return defaultPaymentDAO.searchByInvoice(invoice);
     }
 }

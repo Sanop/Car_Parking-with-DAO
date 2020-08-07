@@ -6,11 +6,13 @@ import business.SuperBO;
 import business.custom.CarCellBO;
 import business.custom.CustomerBO;
 import business.custom.DefaultPaymentBO;
+import business.custom.PaymentBO;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import entity.CarCell;
 import entity.Customer;
 import entity.DefaultPayment;
+import entity.Payment;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -32,6 +34,7 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -127,10 +130,19 @@ public class DashBoardController {
     public JFXComboBox<String> cmbCellID;
     public Label lblTimeCreation;
     public Label lblInvoiceNumber;
+    public JFXButton btnSearchInvoice;
+    public JFXTextField txtInvoiceNumber;
+    public JFXTextField txtOutCellID;
+    public Label lblInTime;
+    public Label lblOutTime;
+    public Label lblExtraPayment;
+    public Label lblNetPayment;
+    public JFXButton btnOut;
 
     CustomerBO customerBO = BOFactory.getInstance().getBO(BOType.CUSTOMER);
     CarCellBO carCellBO = BOFactory.getInstance().getBO(BOType.CARCELL);
     DefaultPaymentBO defaultPaymentBO = BOFactory.getInstance().getBO(BOType.DEFAULT_PAYMENT);
+    PaymentBO paymentBO = BOFactory.getInstance().getBO(BOType.PAYMENT);
 
     public void initialize(){
 
@@ -333,6 +345,9 @@ public class DashBoardController {
         loadNotReservedVehicalList();
 
         loadInvoiceNumber();
+
+        txtOutCellID.setDisable(true);
+        btnOut.setDisable(true);
 
     }
 
@@ -860,6 +875,7 @@ public class DashBoardController {
                 txtOutTime.clear();
                 cmbCustomerID.requestFocus();
                 loadInvoiceNumber();
+                loadNotReservedVehicalList();
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -897,6 +913,56 @@ public class DashBoardController {
     }
 
     public void btnOutAction(ActionEvent actionEvent) {
+        Payment payment = new Payment(txtInvoiceNumber.getText(),lblNetPayment.getText(),lblDate.getText());
+        CarCell carCell = new CarCell(txtOutCellID.getText(),"not reserved");
+        try {
+            boolean result = paymentBO.add(payment, carCell);
+            if(result){
+                new Alert(Alert.AlertType.CONFIRMATION,"Success").showAndWait();
+                txtInvoiceNumber.clear();
+                txtOutCellID.clear();
+                lblInTime.setText("00.00");
+                lblOutTime.setText("00.00");
+                lblExtraPayment.setText("00.00");
+                lblNetPayment.setText("00.00");
+                btnOut.setDisable(true);
+                txtInvoiceNumber.requestFocus();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        setCellColors();
+    }
 
+    public void btnSearchInvoiceOnAction(ActionEvent actionEvent) {
+        try {
+            ResultSet resultSet = defaultPaymentBO.searchByInvoice(txtInvoiceNumber.getText());
+            if(resultSet.next()){
+                txtOutCellID.setText(resultSet.getString(3));
+                String inTime = resultSet.getString(4);
+                lblInTime.setText(inTime);
+                String outTime = resultSet.getString(5);
+                lblOutTime.setText(outTime);
+
+                String currentTime = getCurrentTime();
+                String substring = currentTime.substring(3, 5);
+                int current = Integer.parseInt(substring);
+
+                String substring1 = outTime.substring(3, 5);
+                int out = Integer.parseInt(substring1);
+
+                if(current > out){
+                    lblExtraPayment.setText("100");
+                    lblNetPayment.setText("200");
+                }else{
+                    lblNetPayment.setText("100");
+                }
+
+                btnOut.setDisable(false);
+                lblOutTime.setDisable(false);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
