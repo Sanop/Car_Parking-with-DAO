@@ -115,15 +115,15 @@ cellId varchar(20)primary key,
 status varchar(20)not null
 );
 
-insert into packageCells values ('lblA1','not reserved');
-insert into packageCells values ('lblA2','not reserved');
-insert into packageCells values ('lblB1','not reserved');
-insert into packageCells values ('lblB2','not reserved');
-insert into packageCells values ('lblC1','not reserved');
-insert into packageCells values ('lblC2','not reserved');
-insert into packageCells values ('lblD1','not reserved');
-insert into packageCells values ('lblD2','not reserved');
-insert into packageCells values ('lblE1','not reserved');
-insert into packageCells values ('lblE2','not reserved');
-insert into packageCells values ('lblF1','not reserved');
-insert into packageCells values ('lblF2','not reserved');
+insert into packageCells values ('lblA1P','not reserved');
+insert into packageCells values ('lblA2P','not reserved');
+insert into packageCells values ('lblB1P','not reserved');
+insert into packageCells values ('lblB2P','not reserved');
+insert into packageCells values ('lblC1P','not reserved');
+insert into packageCells values ('lblC2P','not reserved');
+insert into packageCells values ('lblD1P','not reserved');
+insert into packageCells values ('lblD2P','not reserved');
+insert into packageCells values ('lblE1P','not reserved');
+insert into packageCells values ('lblE2P','not reserved');
+insert into packageCells values ('lblF1P','not reserved');
+insert into packageCells values ('lblF2P','not reserved');

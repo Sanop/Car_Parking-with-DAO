@@ -5,11 +5,8 @@ import business.BOType;
 import business.custom.*;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
-import entity.CarCell;
-import entity.Customer;
-import entity.DefaultPayment;
+import entity.*;
 import entity.Package;
-import entity.Payment;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
@@ -140,12 +137,25 @@ public class DashBoardController {
     public JFXButton btnDeletePackage;
     public JFXButton btnSavePackage;
     public Label lblPriceFormat;
+    public Label lblA1P;
+    public Label lblB1P;
+    public Label lblC1P;
+    public Label lblD1P;
+    public Label lblE1P;
+    public Label lblF1P;
+    public Label lblA2P;
+    public Label lblB2P;
+    public Label lblC2P;
+    public Label lblD2P;
+    public Label lblE2P;
+    public Label lblF2P;
 
     CustomerBO customerBO = BOFactory.getInstance().getBO(BOType.CUSTOMER);
     CarCellBO carCellBO = BOFactory.getInstance().getBO(BOType.CARCELL);
     DefaultPaymentBO defaultPaymentBO = BOFactory.getInstance().getBO(BOType.DEFAULT_PAYMENT);
     PaymentBO paymentBO = BOFactory.getInstance().getBO(BOType.PAYMENT);
     PackageBO packageBO = BOFactory.getInstance().getBO(BOType.PACKAGE);
+    PackageCellsBO packageCellsBO = BOFactory.getInstance().getBO(BOType.PACKAGE_CELLS);
 
     public void initialize(){
 
@@ -374,39 +384,69 @@ public class DashBoardController {
         paneManageCustomers.setVisible(false);
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(false);
+
+        setPackageCellColors();
     }
 
-    private void load_Handle_Car_Park() {
-        paneHandleCarPark.setVisible(true);
-        paneHandlePackages.setVisible(false);
-        paneManageCustomers.setVisible(false);
-        paneRegisterNewUser.setVisible(false);
-        paneSettings.setVisible(false);
-
-        setCellColors();
-        loadCustomerCombo();
-        loadNotReservedVehicalList();
-
-        loadInvoiceNumber();
-
-        txtOutCellID.setDisable(true);
-        btnOut.setDisable(true);
-
-    }
-
-    private void loadInvoiceNumber() {
-        Random r = new Random();
-        lblInvoiceNumber.setText(r.nextInt(100000000)+"");
-    }
-
-    private void loadNotReservedVehicalList() {
+    private void setPackageCellColors() {
         try {
-            ResultSet notReservedCells = carCellBO.getNotReservedCells();
-            ObservableList<String> items = cmbCellID.getItems();
-            items.clear();
+            List<PackageCells> allCells = packageCellsBO.getAllCells();
 
-            while(notReservedCells.next()){
-                items.add(notReservedCells.getString(1));
+            for (PackageCells cell : allCells) {
+                String id = cell.getId();
+                if(cell.getStatus().equals("not reserved")){
+                    if(lblA1P.getId().equals(id)){
+                        lblA1P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblA2P.getId().equals(id)){
+                        lblA2P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblB1P.getId().equals(id)){
+                        lblB1P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblB2P.getId().equals(id)){
+                        lblB2P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblC1P.getId().equals(id)){
+                        lblC1P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblC2P.getId().equals(id)){
+                        lblC2P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblD1P.getId().equals(id)){
+                        lblD1P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblD2P.getId().equals(id)){
+                        lblD2P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblE1P.getId().equals(id)){
+                        lblE1P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblE2P.getId().equals(id)){
+                        lblE2P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblF1P.getId().equals(id)){
+                        lblF1P.setStyle("-fx-background-color:   #006699");
+                    }else if(lblF2P.getId().equals(id)){
+                        lblF2P.setStyle("-fx-background-color:   #006699");
+                    }
+                }else{
+                    if(lblA1P.getId().equals(id)){
+                        lblA1P.setStyle("-fx-background-color:   #cccc00");;
+                    }else if(lblA2P.getId().equals(id)){
+                        lblA2P.setStyle("-fx-background-color:   #cccc00");
+                    }else if(lblB1P.getId().equals(id)){
+                        lblB1P.setStyle("-fx-background-color:   #cccc00");
+                    }else if(lblB2P.getId().equals(id)){
+                        lblB2P.setStyle("-fx-background-color:   #cccc00");
+                    }else if(lblC1P.getId().equals(id)){
+                        lblC1P.setStyle("-fx-background-color:   #cccc00");
+                    }else if(lblC2P.getId().equals(id)){
+                        lblC2P.setStyle("-fx-background-color:   #cccc00");
+                    }else if(lblD1P.getId().equals(id)){
+                        lblD1P.setStyle("-fx-background-color:   #cccc00");
+                    }else if(lblD2P.getId().equals(id)){
+                        lblD2P.setStyle("-fx-background-color:   #cccc00");
+                    }else if(lblE1P.getId().equals(id)){
+                        lblE1P.setStyle("-fx-background-color:   #cccc00");
+                    }else if(lblE2P.getId().equals(id)){
+                        lblE2P.setStyle("-fx-background-color:   #cccc00");
+                    }else if(lblF1P.getId().equals(id)){
+                        lblF1P.setStyle("-fx-background-color:   #cccc00");
+                    }else if(lblF2P.getId().equals(id)){
+                        lblF2P.setStyle("-fx-background-color:   #cccc00");
+                    }
+                }
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -754,6 +794,43 @@ public class DashBoardController {
                     }
 
                 }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void load_Handle_Car_Park() {
+        paneHandleCarPark.setVisible(true);
+        paneHandlePackages.setVisible(false);
+        paneManageCustomers.setVisible(false);
+        paneRegisterNewUser.setVisible(false);
+        paneSettings.setVisible(false);
+
+        setCellColors();
+        loadCustomerCombo();
+        loadNotReservedVehicalList();
+
+        loadInvoiceNumber();
+
+        txtOutCellID.setDisable(true);
+        btnOut.setDisable(true);
+
+    }
+
+    private void loadInvoiceNumber() {
+        Random r = new Random();
+        lblInvoiceNumber.setText(r.nextInt(100000000)+"");
+    }
+
+    private void loadNotReservedVehicalList() {
+        try {
+            ResultSet notReservedCells = carCellBO.getNotReservedCells();
+            ObservableList<String> items = cmbCellID.getItems();
+            items.clear();
+
+            while(notReservedCells.next()){
+                items.add(notReservedCells.getString(1));
             }
         } catch (Exception e) {
             e.printStackTrace();

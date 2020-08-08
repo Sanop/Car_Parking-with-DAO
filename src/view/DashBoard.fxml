@@ -165,18 +165,18 @@
             <Label layoutX="138.0" layoutY="23.0" prefHeight="20.0" prefWidth="21.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label layoutX="383.0" layoutY="23.0" prefHeight="20.0" prefWidth="21.0" style="-fx-background-color: #cccc00;" textFill="WHITE" />
             <Separator layoutX="11.0" layoutY="40.0" prefHeight="16.0" prefWidth="839.0" />
-            <Label fx:id="lblA1" layoutX="29.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblB2" layoutX="159.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblC1" layoutX="289.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblD1" layoutX="419.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblE1" layoutX="549.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblF1" layoutX="679.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblA2" layoutX="29.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblB2" layoutX="159.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblC2" layoutX="289.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblD2" layoutX="419.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblE2" layoutX="549.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
-            <Label fx:id="lblF2" layoutX="679.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblA1P" layoutX="29.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblB1P" layoutX="159.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblC1P" layoutX="289.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblD1P" layoutX="419.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblE1P" layoutX="549.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblF1P" layoutX="679.0" layoutY="72.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblA2P" layoutX="29.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblB2P" layoutX="159.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblC2P" layoutX="289.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblD2P" layoutX="419.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblE2P" layoutX="549.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
+            <Label fx:id="lblF2P" layoutX="679.0" layoutY="196.0" prefHeight="113.0" prefWidth="117.0" style="-fx-background-color: #006699;" textFill="WHITE" />
             <Label layoutX="80.0" layoutY="54.0" text="A" />
             <Label layoutX="214.0" layoutY="54.0" prefHeight="16.0" prefWidth="11.0" text="B" />
             <Label layoutX="733.0" layoutY="54.0" text="F" />
@@ -185,6 +185,7 @@
             <Label layoutX="343.0" layoutY="54.0" text="C" />
             <Label layoutX="818.0" layoutY="121.0" text="1" />
             <Label layoutX="818.0" layoutY="245.0" text="2" />
+            <Separator layoutX="10.0" layoutY="315.0" prefHeight="20.0" prefWidth="839.0" />
          </children>
       </Pane>
       <Pane fx:id="paneManageCustomers" layoutX="173.0" layoutY="-1.0" prefHeight="604.0" prefWidth="857.0" style="-fx-background-color: #ffffff;" visible="false">
