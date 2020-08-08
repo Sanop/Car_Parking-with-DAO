@@ -1288,7 +1288,7 @@ public class DashBoardController {
                 int outInt = Integer.parseInt(search.getOutDate().substring(8, 10));
                 int currentInt = Integer.parseInt(currentDate.substring(8, 10));
 
-                if(currentInt > outInt){
+                if(currentInt < outInt){
                     lblNetpaymentPackage.setText(search.getPrice());
                 }else{
                     String price = search.getPrice();
