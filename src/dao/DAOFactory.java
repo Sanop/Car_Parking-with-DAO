@@ -29,6 +29,8 @@ public class DAOFactory {
                 return (T) new PackageCellsDAOImpl();
             case PACKAGE_PAYMENT:
                 return (T) new PackagePaymentDAOImpl();
+            case USERS:
+                return (T) new UsersDAOImpl();
             default:
                 return null;
         }

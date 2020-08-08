@@ -5,6 +5,7 @@
 <?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXDrawer?>
 <?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -308,7 +309,64 @@
       <Pane fx:id="paneRegisterNewUser" layoutX="173.0" layoutY="-1.0" prefHeight="604.0" prefWidth="857.0" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffcc00" height="20.0" layoutY="1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="857.0" />
-            <Label layoutX="331.0" layoutY="3.0" prefHeight="16.0" prefWidth="196.0" text="R e g i s t e r   N e w   U s e r " />
+            <Label layoutX="320.0" layoutY="3.0" prefHeight="16.0" prefWidth="218.0" text="R e g i s t e r   N e w   U s e r ">
+               <font>
+                  <Font name="System Bold" size="13.0" />
+               </font></Label>
+            <ListView fx:id="lstRegisterdUsers" layoutX="575.0" layoutY="89.0" prefHeight="459.0" prefWidth="257.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></ListView>
+            <Label layoutX="575.0" layoutY="67.0" text="Registerd Users" />
+            <Separator layoutX="544.0" layoutY="33.0" orientation="VERTICAL" prefHeight="549.0" prefWidth="16.0" />
+            <Label layoutX="363.0" layoutY="67.0" text="User ID:" />
+            <Label fx:id="lblUserID" layoutX="419.0" layoutY="67.0" prefHeight="16.0" prefWidth="77.0" />
+            <JFXButton fx:id="btnAddNewUser" layoutX="363.0" layoutY="28.0" onAction="#btnAddNewUserOnAction" prefHeight="36.0" prefWidth="175.0" style="-fx-background-color: #006699;" text="+ Add New User" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXTextField fx:id="txtUserFullName" labelFloat="true" layoutX="50.0" layoutY="99.0" prefHeight="26.0" prefWidth="456.0" promptText="User Full Name" />
+            <JFXTextField fx:id="txtUserNIC" labelFloat="true" layoutX="50.0" layoutY="141.0" prefHeight="26.0" prefWidth="456.0" promptText="User NIC" />
+            <JFXTextField fx:id="txtUserAddress" labelFloat="true" layoutX="50.0" layoutY="185.0" prefHeight="26.0" prefWidth="456.0" promptText="User Address" />
+            <JFXTextField fx:id="txtUserContact" labelFloat="true" layoutX="50.0" layoutY="227.0" prefHeight="26.0" prefWidth="456.0" promptText="User Contact" />
+            <JFXTextField fx:id="txtUserMail" labelFloat="true" layoutX="51.0" layoutY="269.0" prefHeight="26.0" prefWidth="456.0" promptText="User E-Mail" />
+            <JFXPasswordField fx:id="txtUserNewPassword" labelFloat="true" layoutX="50.0" layoutY="311.0" prefHeight="26.0" prefWidth="456.0" promptText="New Password" />
+            <JFXPasswordField fx:id="txtUserConfirmPassword" labelFloat="true" layoutX="51.0" layoutY="349.0" prefHeight="26.0" prefWidth="456.0" promptText="Confirm Password" />
+            <JFXTextField fx:id="txtUserNameToSystem" labelFloat="true" layoutX="51.0" layoutY="391.0" prefHeight="26.0" prefWidth="456.0" promptText="User Name To System Login" />
+            <JFXComboBox fx:id="cmbUserRole" labelFloat="true" layoutX="51.0" layoutY="436.0" prefHeight="26.0" prefWidth="165.0" promptText="User Role" />
+            <JFXButton fx:id="btnSaveUsers" layoutX="271.0" layoutY="436.0" onAction="#btnSaveUsersOnAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #339966;" text="Save" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <JFXButton fx:id="btnDeleteUsers" layoutX="363.0" layoutY="436.0" onAction="#btnDeleteUsersonAction" prefHeight="26.0" prefWidth="85.0" style="-fx-background-color: #ff4d4d;" text="Delete" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></JFXButton>
+            <Label fx:id="lblUserOnlyCharacters" layoutX="368.0" layoutY="115.0" text="Please enter Only Charachters" textFill="RED" visible="false">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblUserNICCorrectFormat" layoutX="288.0" layoutY="157.0" text="Please Enter NIC in Correct Format(xxxxxxxxxv)" textFill="RED" visible="false">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblUserContactCorrectFormat" layoutX="265.0" layoutY="243.0" text="Please Enter Contact in Correct Format(xxx-xxxxxxx)" textFill="RED" visible="false">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblUserEmailCOrrectFormat" layoutX="337.0" layoutY="285.0" text="Please Enter E-mail in Correct Format" textFill="RED" visible="false">
+               <font>
+                  <Font size="9.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblPasswordMatch" layoutX="356.0" layoutY="360.0" prefHeight="16.0" prefWidth="150.0" text="Password does not match" textFill="RED" visible="false">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
       <Pane fx:id="paneSettings" layoutX="173.0" layoutY="-2.0" prefHeight="604.0" prefWidth="857.0" style="-fx-background-color: #ffffff;" visible="false">

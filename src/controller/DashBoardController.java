@@ -162,6 +162,25 @@ public class DashBoardController {
     public Label lblNetpaymentPackage;
     public JFXTextField txtCellIdPackage;
     public JFXButton btnPayPackage;
+    public ListView<Users> lstRegisterdUsers;
+    public Label lblUserID;
+    public JFXButton btnAddNewUser;
+    public JFXTextField txtUserFullName;
+    public JFXTextField txtUserNIC;
+    public JFXTextField txtUserAddress;
+    public JFXTextField txtUserContact;
+    public JFXTextField txtUserMail;
+    public JFXPasswordField txtUserNewPassword;
+    public JFXPasswordField txtUserConfirmPassword;
+    public JFXTextField txtUserNameToSystem;
+    public JFXComboBox<String> cmbUserRole;
+    public JFXButton btnSaveUsers;
+    public JFXButton btnDeleteUsers;
+    public Label lblUserOnlyCharacters;
+    public Label lblUserNICCorrectFormat;
+    public Label lblUserContactCorrectFormat;
+    public Label lblUserEmailCOrrectFormat;
+    public Label lblPasswordMatch;
 
     CustomerBO customerBO = BOFactory.getInstance().getBO(BOType.CUSTOMER);
     CarCellBO carCellBO = BOFactory.getInstance().getBO(BOType.CARCELL);
@@ -170,6 +189,7 @@ public class DashBoardController {
     PackageBO packageBO = BOFactory.getInstance().getBO(BOType.PACKAGE);
     PackageCellsBO packageCellsBO = BOFactory.getInstance().getBO(BOType.PACKAGE_CELLS);
     PackagePaymentBO packagePaymentBO = BOFactory.getInstance().getBO(BOType.PACKAGE_PAYMENT);
+    UsersBO usersBO = BOFactory.getInstance().getBO(BOType.USERS);
 
     public void initialize(){
 
@@ -313,6 +333,41 @@ public class DashBoardController {
             }
         });
 
+        lstRegisterdUsers.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Users>() {
+            @Override
+            public void changed(ObservableValue<? extends Users> observable, Users oldValue, Users newValue) {
+                Users selectedItem = lstRegisterdUsers.getSelectionModel().getSelectedItem();
+                if(selectedItem == null){
+                    return;
+                }
+
+
+                lblUserID.setText(selectedItem.getId());
+                txtUserFullName.setText(selectedItem.getName());
+                txtUserFullName.setDisable(false);
+                txtUserNIC.setText(selectedItem.getNic());
+                txtUserNIC.setDisable(false);
+                txtUserAddress.setText(selectedItem.getAddress());
+                txtUserAddress.setDisable(false);
+                txtUserContact.setText(selectedItem.getContact());
+                txtUserContact.setDisable(false);
+                txtUserMail.setText(selectedItem.getEmail());
+                txtUserMail.setDisable(false);
+                txtUserNewPassword.setText(selectedItem.getPassword());
+                txtUserNewPassword.setDisable(false);
+                txtUserConfirmPassword.setText(selectedItem.getPassword());
+                txtUserConfirmPassword.setDisable(false);
+                txtUserNameToSystem.setText(selectedItem.getUserName());
+                txtUserNameToSystem.setDisable(false);
+                cmbUserRole.getSelectionModel().select(selectedItem.getUserRole());
+                cmbUserRole.setDisable(false);
+
+                btnSaveUsers.setText("Update");
+                btnSaveUsers.setDisable(false);
+                btnDeleteUsers.setDisable(false);
+            }
+        });
+
     }
 
     private void loadCustomerList() {
@@ -381,6 +436,66 @@ public class DashBoardController {
         paneManageCustomers.setVisible(false);
         paneRegisterNewUser.setVisible(true);
         paneSettings.setVisible(false);
+
+        commonRegisterNewUser(true);
+
+        loadUserCombo();
+
+    }
+
+    private void loadUserList() {
+        ObservableList<Users> items = lstRegisterdUsers.getItems();
+        items.clear();
+
+        try {
+            List<Users> allUsers = usersBO.getAllUsers();
+            for (Users user : allUsers) {
+                items.add(new Users(user.getId(),
+                        user.getName(),
+                        user.getNic(),
+                        user.getAddress(),
+                        user.getContact(),
+                        user.getEmail(),
+                        user.getPassword(),
+                        user.getUserName(),
+                        user.getUserRole()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadUserCombo() {
+        ObservableList<String> items = cmbUserRole.getItems();
+        items.add("Admin");
+        items.add("Receptionist");
+    }
+
+    private void commonRegisterNewUser(boolean flag) {
+        txtUserFullName.clear();
+        txtUserFullName.setDisable(flag);
+        txtUserNIC.clear();
+        txtUserNIC.setDisable(flag);
+        txtUserAddress.clear();
+        txtUserAddress.setDisable(flag);
+        txtUserContact.clear();
+        txtUserContact.setDisable(flag);
+        txtUserMail.clear();
+        txtUserMail.setDisable(flag);
+        txtUserNewPassword.clear();
+        txtUserNewPassword.setDisable(flag);
+        txtUserConfirmPassword.clear();
+        txtUserConfirmPassword.setDisable(flag);
+        txtUserNameToSystem.clear();
+        txtUserNameToSystem.setDisable(flag);
+        cmbUserRole.getSelectionModel().select(null);
+        cmbUserRole.setDisable(flag);
+        btnSaveUsers.setDisable(flag);
+        btnSaveUsers.setText("Save");
+        btnDeleteUsers.setDisable(flag);
+        btnAddNewUser.requestFocus();
+        loadNewUserID();
+        loadUserList();
     }
 
     private void load_Manage_Customer() {
@@ -1330,5 +1445,130 @@ public class DashBoardController {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void btnAddNewUserOnAction(ActionEvent actionEvent) {
+        commonRegisterNewUser(false);
+        btnDeleteUsers.setDisable(true);
+        txtUserFullName.requestFocus();
+    }
+
+    private void loadNewUserID() {
+        try {
+            lblUserID.setText(usersBO.getNewUserID());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void btnSaveUsersOnAction(ActionEvent actionEvent) {
+        if(txtUserFullName.getText().trim().isEmpty()){
+            txtUserFullName.requestFocus();
+        }else if(txtUserNIC.getText().trim().isEmpty()){
+            txtUserNIC.requestFocus();
+        }else if(txtUserAddress.getText().trim().isEmpty()){
+            txtUserAddress.requestFocus();
+        }else if(txtUserContact.getText().trim().isEmpty()){
+            txtUserContact.requestFocus();
+        }else if(txtUserMail.getText().trim().isEmpty()){
+            txtUserMail.requestFocus();
+        }else if(txtUserNewPassword.getText().trim().isEmpty()){
+            txtUserNewPassword.requestFocus();
+        }else if(txtUserConfirmPassword.getText().trim().isEmpty()){
+            txtUserConfirmPassword.requestFocus();
+        }else if(txtUserNameToSystem.getText().trim().isEmpty()){
+            txtUserNameToSystem.requestFocus();
+        }else if(cmbUserRole.getSelectionModel().getSelectedItem() == null){
+            cmbUserRole.requestFocus();
+        }else if(txtUserFullName.getText().trim().matches("[a-z A-Z.]+")){
+            lblUserOnlyCharacters.setVisible(false);
+            if(txtUserNIC.getText().trim().matches("\\d{9}[vV]")){
+                lblUserNICCorrectFormat.setVisible(false);
+                if(txtUserContact.getText().trim().matches("\\d{3}[-]\\d{7}")){
+                    lblUserContactCorrectFormat.setVisible(false);
+                    if(txtUserMail.getText().trim().matches("[a-z0-9]+[@][a-z]+[.][a-z]+")){
+                        lblUserEmailCOrrectFormat.setVisible(false);
+                        if(txtUserConfirmPassword.getText().equals(txtUserNewPassword.getText())){
+                            lblPasswordMatch.setVisible(false);
+                            if(btnSaveUsers.getText().equals("Save")){
+                                saveUsers();
+                            }else{
+                                updateUsers();
+                            }
+
+                            commonRegisterNewUser(true);
+                        }else{
+                            lblPasswordMatch.setVisible(true);
+                            txtUserConfirmPassword.requestFocus();
+                        }
+                    }else{
+                        lblUserEmailCOrrectFormat.setVisible(true);
+                        txtUserMail.requestFocus();
+                    }
+                }else{
+                    lblUserContactCorrectFormat.setVisible(true);
+                    txtUserContact.requestFocus();
+                }
+            }else{
+                lblUserNICCorrectFormat.setVisible(true);
+                txtUserNIC.requestFocus();
+            }
+        }else{
+            lblUserOnlyCharacters.setVisible(true);
+            txtUserFullName.requestFocus();
+        }
+    }
+
+    private void updateUsers() {
+        try {
+            boolean result = usersBO.updateUser(lblUserID.getText(),
+                    txtUserFullName.getText(),
+                    txtUserNIC.getText(),
+                    txtUserAddress.getText(),
+                    txtUserContact.getText(),
+                    txtUserMail.getText(),
+                    txtUserConfirmPassword.getText(),
+                    txtUserNameToSystem.getText(),
+                    cmbUserRole.getSelectionModel().getSelectedItem());
+
+            if(result){
+                new Alert(Alert.AlertType.CONFIRMATION,"Successfully Updated").showAndWait();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void saveUsers() {
+        try {
+            boolean result = usersBO.saveUser(lblUserID.getText(),
+                    txtUserFullName.getText(),
+                    txtUserNIC.getText(),
+                    txtUserAddress.getText(),
+                    txtUserContact.getText(),
+                    txtUserMail.getText(),
+                    txtUserConfirmPassword.getText(),
+                    txtUserNameToSystem.getText(),
+                    cmbUserRole.getSelectionModel().getSelectedItem());
+
+            if(result){
+                new Alert(Alert.AlertType.CONFIRMATION,"SuccessFully Addedd").showAndWait();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void btnDeleteUsersonAction(ActionEvent actionEvent) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION, "Do you really want to delete this User", ButtonType.YES, ButtonType.NO);
+        Optional<ButtonType> buttonType = alert.showAndWait();
+        if(buttonType.get().equals(ButtonType.YES)){
+            try {
+                usersBO.deleteUser(lblUserID.getText());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        commonRegisterNewUser(true);
     }
 }

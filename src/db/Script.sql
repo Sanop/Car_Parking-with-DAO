@@ -131,3 +131,15 @@ insert into packageCells values ('lblE1P','not reserved');
 insert into packageCells values ('lblE2P','not reserved');
 insert into packageCells values ('lblF1P','not reserved');
 insert into packageCells values ('lblF2P','not reserved');
+
+create table users(
+id varchar(20)primary key ,
+name varchar(100)not null,
+nic varchar(100)not null,
+address varchar(100)not null,
+contact varchar(100)not null,
+email varchar(100)not null,
+password varchar(100)not null,
+userName varchar(100)not null,
+userRole varchar(100)not null
+);
