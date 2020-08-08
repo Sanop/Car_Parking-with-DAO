@@ -24,7 +24,7 @@
          </cursor>
       </JFXHamburger>
       <JFXDrawer fx:id="jfxDrawer" layoutX="-2.0" layoutY="97.0" prefHeight="506.0" prefWidth="175.0" />
-      <Pane fx:id="paneHandleCarPark" layoutX="173.0" layoutY="-1.0" prefHeight="604.0" prefWidth="857.0" style="-fx-background-color: #ffffff;">
+      <Pane fx:id="paneHandleCarPark" layoutX="173.0" layoutY="-1.0" prefHeight="604.0" prefWidth="857.0" style="-fx-background-color: #ffffff;" visible="false">
          <children>
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffcc00" height="20.0" layoutY="1.0" stroke="TRANSPARENT" strokeType="INSIDE" width="857.0" />
             <Label layoutX="338.0" layoutY="3.0" prefHeight="16.0" prefWidth="182.0" text="H a n d l e   C a r   P a r k">
