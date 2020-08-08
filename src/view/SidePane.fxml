@@ -35,7 +35,7 @@
       </JFXButton>
       <Label layoutX="49.0" layoutY="180.0" text="Only Admin" />
       <Separator layoutX="6.0" layoutY="174.0" prefHeight="3.0" prefWidth="162.0" />
-      <JFXButton fx:id="btnMangePackages" accessibleText="Manage Packages" layoutY="203.0" onAction="#btnMangePackageOnAction" prefHeight="54.0" prefWidth="175.0" style="-fx-background-color: #ffcc00;" text="Manage Packages">
+      <JFXButton fx:id="btnRegisterNewUser" accessibleText="Register New User" layoutY="206.0" onAction="#btnRegisterNewUserOnAction" prefHeight="54.0" prefWidth="175.0" style="-fx-background-color: #ffcc00;" text="Register New User">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -43,7 +43,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnManageCarCells" accessibleText="Manage Car Cells" layoutY="258.0" onAction="#btnManageCarCellsOnAction" prefHeight="54.0" prefWidth="175.0" style="-fx-background-color: #ffcc00;" text="Manage Car Cells">
+      <JFXButton fx:id="btnSettings" accessibleText="Settings" layoutY="261.0" onAction="#btnSettingsOnAction" prefHeight="54.0" prefWidth="175.0" style="-fx-background-color: #ffcc00;" text="Settings">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>
@@ -51,23 +51,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <JFXButton fx:id="btnRegisterNewUser" accessibleText="Register New User" layoutY="313.0" onAction="#btnRegisterNewUserOnAction" prefHeight="54.0" prefWidth="175.0" style="-fx-background-color: #ffcc00;" text="Register New User">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton fx:id="btnSettings" accessibleText="Settings" layoutY="368.0" onAction="#btnSettingsOnAction" prefHeight="54.0" prefWidth="175.0" style="-fx-background-color: #ffcc00;" text="Settings">
-         <font>
-            <Font name="System Bold" size="13.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </JFXButton>
-      <JFXButton fx:id="btnLogout" accessibleText="Log Out" layoutY="446.0" onAction="#btnLogoutOnAction" prefHeight="42.0" prefWidth="175.0" style="-fx-background-color: #ae0e0e#ae0e0e;" text="Log Out" textFill="WHITE">
+      <JFXButton fx:id="btnLogout" accessibleText="Log Out" layoutY="350.0" onAction="#btnLogoutOnAction" prefHeight="42.0" prefWidth="175.0" style="-fx-background-color: #ae0e0e#ae0e0e;" text="Log Out" textFill="WHITE">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

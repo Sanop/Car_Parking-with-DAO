@@ -10,4 +10,6 @@ public interface CustomerDAO extends CrudDAO<Customer , String> {
     public String getLastCustomerID()throws Exception;
 
     public ResultSet getCustomerIDList()throws Exception;
+
+    public Customer getCustomerByCID(String cid)throws Exception;
 }

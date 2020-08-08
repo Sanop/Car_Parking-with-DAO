@@ -18,4 +18,6 @@ public interface CustomerBO extends SuperBO {
     public boolean updateCustomer( String name, String address,String contact,String nic,String carNumber,String carModel, String customerId)throws Exception;
 
     public ResultSet getCustomerIdList() throws Exception;
+
+    public Customer getCustomerByID(String cid)throws Exception;
 }

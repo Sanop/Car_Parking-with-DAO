@@ -26,6 +26,22 @@ public class CustomerDAOImpl implements CustomerDAO {
     }
 
     @Override
+    public Customer getCustomerByCID(String cid) throws Exception {
+        ResultSet rst = CrudUtil.execute("SELECT * FROM customer WHERE id = ?", cid);
+        Customer customer = null;
+        if(rst.next()){
+            customer = new Customer(rst.getString(1),
+                    rst.getString(2),
+                    rst.getString(3),
+                    rst.getString(4),
+                    rst.getString(5),
+                    rst.getString(6),
+                    rst.getString(7));
+        }
+        return customer;
+    }
+
+    @Override
     public List<Customer> findAll() throws Exception {
 
         ResultSet rst = CrudUtil.execute("SELECT * FROM customer");

@@ -61,4 +61,10 @@ public class CustomerBOImpl implements CustomerBO {
         return customerDAO.getCustomerIDList();
     }
 
+    @Override
+    public Customer getCustomerByID(String cid) throws Exception {
+        CustomerDAO customerDAO = DAOFactory.getInstance().getDAO(DAOType.CUSTOMER);
+        return customerDAO.getCustomerByCID(cid);
+    }
+
 }

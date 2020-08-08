@@ -183,12 +183,6 @@ public class DashBoardController {
                         case "Manage Customers":
                             load_Manage_Customer();
                             break;
-                        case "Manage Packages":
-                            load_Manage_Packages();
-                            break;
-                        case "Manage Car Cells":
-                            load_Manage_Car_Cells();
-                            break;
                         case "Register New User":
                             load_Register_new_User();
                             break;
@@ -243,6 +237,22 @@ public class DashBoardController {
             }
         });
 
+        cmbCustomerID.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                String selectedItem = cmbCustomerID.getSelectionModel().getSelectedItem();
+                if(selectedItem == null){
+                    return;
+                }
+                try {
+                    Customer customer = customerBO.getCustomerByID(selectedItem);
+                    txtVehicalInNumber.setText(customer.getCarNumber());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 
     private void loadCustomerList() {
@@ -275,26 +285,6 @@ public class DashBoardController {
         paneManageCustomers.setVisible(false);
         paneManagePackages.setVisible(false);
         paneRegisterNewUser.setVisible(true);
-        paneSettings.setVisible(false);
-    }
-
-    private void load_Manage_Car_Cells() {
-        paneHandleCarPark.setVisible(false);
-        paneHandlePackages.setVisible(false);
-        paneManageCarCells.setVisible(true);
-        paneManageCustomers.setVisible(false);
-        paneManagePackages.setVisible(false);
-        paneRegisterNewUser.setVisible(false);
-        paneSettings.setVisible(false);
-    }
-
-    private void load_Manage_Packages() {
-        paneHandleCarPark.setVisible(false);
-        paneHandlePackages.setVisible(false);
-        paneManageCarCells.setVisible(false);
-        paneManageCustomers.setVisible(false);
-        paneManagePackages.setVisible(true);
-        paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(false);
     }
 

@@ -92,3 +92,20 @@ invoice varchar(100)not null,
 payment varchar(100)not null,
 date varchar(20)not null
 );
+
+create table package(
+id varchar(20)primary key,
+type varchar(100)not null,
+price varchar(100)not null
+);
+
+create table packagePayment(
+id varchar(20),
+price varchar(100)not null,
+cellid varchar(10)not null,
+inDate varchar(100)not null,
+outDate varchar(100)not null,
+invoice varchar(100)not null,
+constraint foreign key(id)references package(id),
+constraint foreign key(cellid)references carCells(cellid)
+);
