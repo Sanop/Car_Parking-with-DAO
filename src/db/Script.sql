@@ -99,6 +99,11 @@ type varchar(100)not null,
 price varchar(100)not null
 );
 
+create table packageCells(
+cellId varchar(20)primary key,
+status varchar(20)not null
+);
+
 create table packagePayment(
 id varchar(20),
 price varchar(100)not null,
@@ -106,14 +111,13 @@ cellid varchar(10)not null,
 inDate varchar(100)not null,
 outDate varchar(100)not null,
 invoice varchar(100)not null,
+cid varchar(20)not null,
 constraint foreign key(id)references package(id),
-constraint foreign key(cellid)references carCells(cellid)
+constraint foreign key(cellid)references packageCells(cellId),
+constraint foreign key(cid) references customer(id)
 );
 
-create table packageCells(
-cellId varchar(20)primary key,
-status varchar(20)not null
-);
+
 
 insert into packageCells values ('lblA1P','not reserved');
 insert into packageCells values ('lblA2P','not reserved');

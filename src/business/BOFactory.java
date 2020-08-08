@@ -28,6 +28,8 @@ public class BOFactory {
                 return (T) new PackageBOImpl();
             case PACKAGE_CELLS:
                 return (T) new PackageCellsBOImpl();
+            case PACKAGE_PAYMENT:
+                return (T) new PackagePaymentBOImpl();
             default:
                 return null;
         }

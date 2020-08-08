@@ -7,6 +7,7 @@ public class PackagePayment implements SuperEntity{
     private String inDate;
     private String outDate;
     private String invoice;
+    private String cid;
 
     public PackagePayment() {
     }
@@ -18,6 +19,24 @@ public class PackagePayment implements SuperEntity{
         this.inDate = inDate;
         this.outDate = outDate;
         this.invoice = invoice;
+    }
+
+    public PackagePayment(String id, String price, String cellid, String inDate, String outDate, String invoice, String cid) {
+        this.id = id;
+        this.price = price;
+        this.cellid = cellid;
+        this.inDate = inDate;
+        this.outDate = outDate;
+        this.invoice = invoice;
+        this.cid = cid;
+    }
+
+    public void setCid(String cid) {
+        this.cid = cid;
+    }
+
+    public String getCid() {
+        return cid;
     }
 
     public String getId() {

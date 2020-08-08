@@ -14,10 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -27,6 +24,7 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -149,6 +147,21 @@ public class DashBoardController {
     public Label lblD2P;
     public Label lblE2P;
     public Label lblF2P;
+    public JFXComboBox<Package> cmbHandlePackageType;
+    public JFXTextField txtPackagePrice;
+    public JFXComboBox<String> cmbPackageCellID;
+    public JFXDatePicker pickerOutDate;
+    public JFXButton btnSaveNewPackage;
+    public Label lblPackageInvoiceNumber;
+    public JFXComboBox<String> cmbPackageCustomerID;
+    public JFXTextField txtPackageInvoiceSerach;
+    public JFXButton btnPackageSearchInvoice;
+    public Label lblInDate;
+    public Label lblOutDate;
+    public Label lblExtraChargePackage;
+    public Label lblNetpaymentPackage;
+    public JFXTextField txtCellIdPackage;
+    public JFXButton btnPayPackage;
 
     CustomerBO customerBO = BOFactory.getInstance().getBO(BOType.CUSTOMER);
     CarCellBO carCellBO = BOFactory.getInstance().getBO(BOType.CARCELL);
@@ -156,6 +169,7 @@ public class DashBoardController {
     PaymentBO paymentBO = BOFactory.getInstance().getBO(BOType.PAYMENT);
     PackageBO packageBO = BOFactory.getInstance().getBO(BOType.PACKAGE);
     PackageCellsBO packageCellsBO = BOFactory.getInstance().getBO(BOType.PACKAGE_CELLS);
+    PackagePaymentBO packagePaymentBO = BOFactory.getInstance().getBO(BOType.PACKAGE_PAYMENT);
 
     public void initialize(){
 
@@ -287,6 +301,18 @@ public class DashBoardController {
             }
         });
 
+        cmbHandlePackageType.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Package>() {
+            @Override
+            public void changed(ObservableValue<? extends Package> observable, Package oldValue, Package newValue) {
+                Package selectedItem = cmbHandlePackageType.getSelectionModel().getSelectedItem();
+                if(selectedItem == null){
+                    return;
+                }
+
+                txtPackagePrice.setText(selectedItem.getPrice());
+            }
+        });
+
     }
 
     private void loadCustomerList() {
@@ -309,9 +335,9 @@ public class DashBoardController {
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(true);
 
-        managePackageCommon();
-
         loadPackageSettingCombo();
+
+        managePackageCommon();
     }
 
     private void loadPackageSettingCombo() {
@@ -386,6 +412,52 @@ public class DashBoardController {
         paneSettings.setVisible(false);
 
         setPackageCellColors();
+
+        loadPackageTypeCombo();
+
+        loadNotReservedPackageCellListCombo();
+
+        loadCustomerCombo();
+        pickerOutDate.setDayCellFactory(picker -> new DateCell() {
+            public void updateItem(LocalDate date, boolean empty) {
+                super.updateItem(date, empty);
+                LocalDate today = LocalDate.now();
+
+                setDisable(empty || date.compareTo(today) < 0 );
+            }
+        });
+
+        String s = loadInvoiceNumber();
+        lblPackageInvoiceNumber.setText(s);
+        btnPayPackage.setDisable(true);
+    }
+
+    private void loadNotReservedPackageCellListCombo() {
+
+        ObservableList<String> items = cmbPackageCellID.getItems();
+        try {
+            ResultSet notReservedCells = packageCellsBO.getNotReservedCells();
+            while (notReservedCells.next()){
+                items.add(notReservedCells.getString(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void loadPackageTypeCombo() {
+        ObservableList<Package> items = cmbHandlePackageType.getItems();
+        items.clear();
+
+        try {
+            List<Package> allPackages = packageBO.getAllPackages();
+
+            for (Package aPackage : allPackages) {
+                items.add(new Package(aPackage.getId(),aPackage.getType(),aPackage.getPrice()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void setPackageCellColors() {
@@ -811,16 +883,17 @@ public class DashBoardController {
         loadCustomerCombo();
         loadNotReservedVehicalList();
 
-        loadInvoiceNumber();
+        String s = loadInvoiceNumber();
+        lblInvoiceNumber.setText(s);
 
         txtOutCellID.setDisable(true);
         btnOut.setDisable(true);
 
     }
 
-    private void loadInvoiceNumber() {
+    private String loadInvoiceNumber() {
         Random r = new Random();
-        lblInvoiceNumber.setText(r.nextInt(100000000)+"");
+        return r.nextInt(100000000)+"";
     }
 
     private void loadNotReservedVehicalList() {
@@ -1021,10 +1094,13 @@ public class DashBoardController {
         try {
             ResultSet customerIdList = customerBO.getCustomerIdList();
             ObservableList<String> items = cmbCustomerID.getItems();
+            ObservableList<String> customerIDs = cmbPackageCustomerID.getItems();
+            customerIDs.clear();
             items.clear();
 
             while (customerIdList.next()){
                 items.add(customerIdList.getString(1));
+                customerIDs.add(customerIdList.getString(1));
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1154,6 +1230,103 @@ public class DashBoardController {
             }
             managePackageCommon();
             loadPackageSettingCombo();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void btnSaveNewPackageOnAction(ActionEvent actionEvent) {
+        if(cmbHandlePackageType.getSelectionModel().getSelectedItem() == null){
+            cmbHandlePackageType.requestFocus();
+        }else if(cmbPackageCellID.getSelectionModel().getSelectedItem() == null){
+            cmbPackageCellID.requestFocus();
+        }else if(pickerOutDate.getValue().toString() == null) {
+            pickerOutDate.requestFocus();
+        }else if(cmbPackageCustomerID.getSelectionModel().getSelectedItem() == null){
+            cmbPackageCustomerID.requestFocus();
+        }else{
+            Package packageType = cmbHandlePackageType.getSelectionModel().getSelectedItem();
+            String packageID = packageType.getId();
+            String packagePrice = packageType.getPrice();
+            String cellID = cmbPackageCellID.getSelectionModel().getSelectedItem();
+            String inDate = lblDate.getText();
+            String outDate = pickerOutDate.getValue().toString();
+            String invoice = lblPackageInvoiceNumber.getText();
+            String customerID = cmbPackageCustomerID.getSelectionModel().getSelectedItem();
+
+            PackagePayment packagePayment = new PackagePayment(packageID, packagePrice, cellID, inDate, outDate, invoice,customerID);
+            PackageCells packageCells = new PackageCells(cellID, "reserved");
+            try {
+                boolean result = packagePaymentBO.add(packagePayment, packageCells);
+                if(result){
+                    new Alert(Alert.AlertType.CONFIRMATION,"Success").showAndWait();
+                    cmbHandlePackageType.getSelectionModel().select(null);
+                    txtPackagePrice.clear();
+                    cmbPackageCellID.getSelectionModel().select(null);
+                    pickerOutDate.setValue(null);
+                    lblPackageInvoiceNumber.setText(loadInvoiceNumber());
+                    setPackageCellColors();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void btnPackageSearchInvoiceOnAction(ActionEvent actionEvent) {
+        if(txtPackageInvoiceSerach.getText().trim().isEmpty()){
+            txtPackageInvoiceSerach.requestFocus();
+        }else{
+            String invoiceNumber = txtPackageInvoiceSerach.getText();
+            try {
+                PackagePayment search = packagePaymentBO.search(invoiceNumber);
+                lblInDate.setText(search.getInDate());
+                lblOutDate.setText(search.getOutDate());
+                txtCellIdPackage.setText(search.getCellid());
+                String currentDate = lblDate.getText();
+
+                int outInt = Integer.parseInt(search.getOutDate().substring(8, 10));
+                int currentInt = Integer.parseInt(currentDate.substring(8, 10));
+
+                if(currentInt > outInt){
+                    lblNetpaymentPackage.setText(search.getPrice());
+                }else{
+                    String price = search.getPrice();
+                    price = price.substring(0, price.length() - 3);
+                    int priceInt = Integer.parseInt(price);
+                    lblNetpaymentPackage.setText((priceInt+500) + "");
+                    lblExtraChargePackage.setText("500");
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        btnPayPackage.setDisable(false);
+
+    }
+
+    public void btnPayPackageOnAction(ActionEvent actionEvent) {
+        String invoice = txtPackageInvoiceSerach.getText();
+        String netPayment = lblNetpaymentPackage.getText();
+        String date = lblDate.getText();
+
+        Payment payment = new Payment(invoice,netPayment,date);
+        PackageCells packageCells = new PackageCells(txtCellIdPackage.getText(),"not reserved");
+        try {
+            boolean result = packagePaymentBO.pay(payment, packageCells);
+            if(result){
+                new Alert(Alert.AlertType.CONFIRMATION,"Success").showAndWait();
+            }
+
+            txtCellIdPackage.clear();
+            lblInDate.setText("");
+            lblOutDate.setText("");
+            lblNetpaymentPackage.setText("");
+            lblExtraChargePackage.setText("");
+            btnPayPackage.setDisable(true);
+            txtPackageInvoiceSerach.clear();
+            setPackageCellColors();
+            txtPackageInvoiceSerach.requestFocus();
         } catch (Exception e) {
             e.printStackTrace();
         }
