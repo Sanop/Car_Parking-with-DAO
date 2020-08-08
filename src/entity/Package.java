@@ -1,6 +1,6 @@
 package entity;
 
-public class Package {
+public class Package implements SuperEntity {
     private String id;
     private String type;
     private String price;
@@ -13,6 +13,7 @@ public class Package {
         this.type = type;
         this.price = price;
     }
+
 
     public String getId() {
         return id;
@@ -40,10 +41,6 @@ public class Package {
 
     @Override
     public String toString() {
-        return "Package{" +
-                "id='" + id + '\'' +
-                ", type='" + type + '\'' +
-                ", price='" + price + '\'' +
-                '}';
+        return type;
     }
 }

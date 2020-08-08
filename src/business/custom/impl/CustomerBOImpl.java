@@ -16,7 +16,9 @@ public class CustomerBOImpl implements CustomerBO {
     public String getNewCustomerId() throws Exception {
         CustomerDAO customerDAO = DAOFactory.getInstance().getDAO(DAOType.CUSTOMER);
         String lastCustomerID = customerDAO.getLastCustomerID();
-
+        if(lastCustomerID == null){
+            return "C001";
+        }
         lastCustomerID = lastCustomerID.substring(1, 4);
 
         int newId = Integer.parseInt(lastCustomerID) + 1;

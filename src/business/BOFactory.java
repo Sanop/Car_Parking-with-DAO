@@ -1,9 +1,6 @@
 package business;
 
-import business.custom.impl.CarCellBOImpl;
-import business.custom.impl.CustomerBOImpl;
-import business.custom.impl.DefaultPaymentBOImpl;
-import business.custom.impl.PaymentBOImpl;
+import business.custom.impl.*;
 
 public class BOFactory {
 
@@ -27,6 +24,8 @@ public class BOFactory {
                 return (T) new DefaultPaymentBOImpl();
             case PAYMENT:
                 return (T) new PaymentBOImpl();
+            case PACKAGE:
+                return (T) new PackageBOImpl();
             default:
                 return null;
         }

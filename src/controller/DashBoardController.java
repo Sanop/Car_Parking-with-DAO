@@ -2,16 +2,13 @@ package controller;
 
 import business.BOFactory;
 import business.BOType;
-import business.SuperBO;
-import business.custom.CarCellBO;
-import business.custom.CustomerBO;
-import business.custom.DefaultPaymentBO;
-import business.custom.PaymentBO;
+import business.custom.*;
 import com.jfoenix.controls.*;
 import com.jfoenix.transitions.hamburger.HamburgerBackArrowBasicTransition;
 import entity.CarCell;
 import entity.Customer;
 import entity.DefaultPayment;
+import entity.Package;
 import entity.Payment;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -34,7 +31,6 @@ import java.sql.ResultSet;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
@@ -47,8 +43,6 @@ public class DashBoardController {
     public Pane paneHandleCarPark;
     public Pane paneHandlePackages;
     public Pane paneManageCustomers;
-    public Pane paneManagePackages;
-    public Pane paneManageCarCells;
     public Pane paneRegisterNewUser;
     public Pane paneSettings;
     public AnchorPane root;
@@ -138,11 +132,20 @@ public class DashBoardController {
     public Label lblExtraPayment;
     public Label lblNetPayment;
     public JFXButton btnOut;
+    public JFXButton btnAddNewPackageID;
+    public Label lblPackageID;
+    public JFXTextField txtnNewPackageType;
+    public JFXTextField txtNewPackagePrice;
+    public JFXComboBox<Package> cmbAddedPackagesSettings;
+    public JFXButton btnDeletePackage;
+    public JFXButton btnSavePackage;
+    public Label lblPriceFormat;
 
     CustomerBO customerBO = BOFactory.getInstance().getBO(BOType.CUSTOMER);
     CarCellBO carCellBO = BOFactory.getInstance().getBO(BOType.CARCELL);
     DefaultPaymentBO defaultPaymentBO = BOFactory.getInstance().getBO(BOType.DEFAULT_PAYMENT);
     PaymentBO paymentBO = BOFactory.getInstance().getBO(BOType.PAYMENT);
+    PackageBO packageBO = BOFactory.getInstance().getBO(BOType.PACKAGE);
 
     public void initialize(){
 
@@ -253,6 +256,27 @@ public class DashBoardController {
             }
         });
 
+        cmbAddedPackagesSettings.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<Package>() {
+            @Override
+            public void changed(ObservableValue<? extends Package> observable, Package oldValue, Package newValue) {
+                Package selectedItem = cmbAddedPackagesSettings.getSelectionModel().getSelectedItem();
+                if(selectedItem == null){
+                    return;
+                }
+
+                txtnNewPackageType.setText(selectedItem.getType());
+                txtNewPackagePrice.setText(selectedItem.getPrice());
+                lblPackageID.setText(selectedItem.getId());
+
+                txtNewPackagePrice.setDisable(false);
+                txtnNewPackageType.setDisable(false);
+
+                btnSavePackage.setText("Update");
+                btnSavePackage.setDisable(false);
+                btnDeletePackage.setDisable(false);
+            }
+        });
+
     }
 
     private void loadCustomerList() {
@@ -271,19 +295,54 @@ public class DashBoardController {
     private void load_Settings() {
         paneHandleCarPark.setVisible(false);
         paneHandlePackages.setVisible(false);
-        paneManageCarCells.setVisible(false);
         paneManageCustomers.setVisible(false);
-        paneManagePackages.setVisible(false);
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(true);
+
+        managePackageCommon();
+
+        loadPackageSettingCombo();
+    }
+
+    private void loadPackageSettingCombo() {
+        ObservableList<Package> items = cmbAddedPackagesSettings.getItems();
+        items.clear();
+
+        try {
+            List<Package> allPackages = packageBO.getAllPackages();
+
+            for (Package allPackage : allPackages) {
+                items.add(new Package(allPackage.getId(),allPackage.getType(),allPackage.getPrice()));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void managePackageCommon() {
+        txtnNewPackageType.setDisable(true);
+        txtnNewPackageType.clear();
+        txtNewPackagePrice.setDisable(true);
+        txtNewPackagePrice.clear();
+        btnSavePackage.setDisable(true);
+        btnSavePackage.setText("Save");
+        btnDeletePackage.setDisable(true);
+        btnAddNewPackageID.requestFocus();
+        loadNewPackageID();
+    }
+
+    private void loadNewPackageID() {
+        try {
+            lblPackageID.setText(packageBO.createNewPackageID());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     private void load_Register_new_User() {
         paneHandleCarPark.setVisible(false);
         paneHandlePackages.setVisible(false);
-        paneManageCarCells.setVisible(false);
         paneManageCustomers.setVisible(false);
-        paneManagePackages.setVisible(false);
         paneRegisterNewUser.setVisible(true);
         paneSettings.setVisible(false);
     }
@@ -291,9 +350,7 @@ public class DashBoardController {
     private void load_Manage_Customer() {
         paneHandleCarPark.setVisible(false);
         paneHandlePackages.setVisible(false);
-        paneManageCarCells.setVisible(false);
         paneManageCustomers.setVisible(true);
-        paneManagePackages.setVisible(false);
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(false);
 
@@ -314,9 +371,7 @@ public class DashBoardController {
     private void load_Handle_Packages() {
         paneHandleCarPark.setVisible(false);
         paneHandlePackages.setVisible(true);
-        paneManageCarCells.setVisible(false);
         paneManageCustomers.setVisible(false);
-        paneManagePackages.setVisible(false);
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(false);
     }
@@ -324,9 +379,7 @@ public class DashBoardController {
     private void load_Handle_Car_Park() {
         paneHandleCarPark.setVisible(true);
         paneHandlePackages.setVisible(false);
-        paneManageCarCells.setVisible(false);
         paneManageCustomers.setVisible(false);
-        paneManagePackages.setVisible(false);
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(false);
 
@@ -359,7 +412,6 @@ public class DashBoardController {
             e.printStackTrace();
         }
     }
-
 
     private void setCellColors(){
         try {
@@ -951,6 +1003,80 @@ public class DashBoardController {
                 btnOut.setDisable(false);
                 lblOutTime.setDisable(false);
             }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void btnAddNewPackageIDOnAction(ActionEvent actionEvent) {
+        cmbAddedPackagesSettings.getSelectionModel().select(null);
+        txtnNewPackageType.setDisable(false);
+        txtnNewPackageType.clear();
+        txtNewPackagePrice.setDisable(false);
+        txtNewPackagePrice.clear();
+        txtnNewPackageType.requestFocus();
+        loadNewPackageID();
+        btnSavePackage.setDisable(false);
+        btnSavePackage.setText("Save");
+
+    }
+
+    public void btnSavePackageOnAction(ActionEvent actionEvent) {
+        if(txtnNewPackageType.getText().trim().isEmpty()){
+            txtnNewPackageType.requestFocus();
+        }else if(txtNewPackagePrice.getText().trim().isEmpty()){
+            txtNewPackagePrice.requestFocus();
+        }else if(txtNewPackagePrice.getText().trim().matches("\\d+[.]\\d{2}")){
+            lblPriceFormat.setVisible(false);
+            if(btnSavePackage.getText().equals("Save")){
+                savePackage();
+            }else{
+                updatePackage();
+            }
+
+            loadPackageSettingCombo();
+            managePackageCommon();
+        }else{
+            lblPriceFormat.setVisible(true);
+            txtNewPackagePrice.requestFocus();
+        }
+    }
+
+    private void updatePackage() {
+        try {
+            boolean result = packageBO.updatePackage(new Package(lblPackageID.getText(), txtnNewPackageType.getText(), txtNewPackagePrice.getText()));
+            if(result){
+                new Alert(Alert.AlertType.CONFIRMATION,"Successfully Updated").showAndWait();
+            }
+            cmbAddedPackagesSettings.getSelectionModel().select(null);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void savePackage() {
+        try {
+            boolean result = packageBO.addPackage(new Package(lblPackageID.getText(),
+                    txtnNewPackageType.getText(),
+                    txtNewPackagePrice.getText()));
+
+            if(result){
+                new Alert(Alert.AlertType.CONFIRMATION,"Success").showAndWait();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void btnDeletePackageOnAction(ActionEvent actionEvent) {
+        try {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Do you really want to delete this package", ButtonType.YES, ButtonType.NO);
+            Optional<ButtonType> buttonType = alert.showAndWait();
+            if(buttonType.get().equals(ButtonType.YES)){
+                packageBO.deletePackage(lblPackageID.getText());
+            }
+            managePackageCommon();
+            loadPackageSettingCombo();
         } catch (Exception e) {
             e.printStackTrace();
         }

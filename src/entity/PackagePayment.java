@@ -1,6 +1,6 @@
 package entity;
 
-public class PackagePayment {
+public class PackagePayment implements SuperEntity{
     private String id;
     private String price;
     private String cellid;
