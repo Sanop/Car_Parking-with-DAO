@@ -17,4 +17,6 @@ public interface UsersBO extends SuperBO {
     public boolean deleteUser(String id)throws Exception;
 
     public String getNewUserID()throws Exception;
+
+    public int searchUserRole(Users entity)throws Exception;
 }

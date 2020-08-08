@@ -68,4 +68,13 @@ public class UsersDAOImpl implements UsersDAO {
         }
         return null;
     }
+
+    @Override
+    public int searchUserRole(Users entity) throws Exception {
+        ResultSet rst = CrudUtil.execute("SELECT * FROM users WHERE userName = ? and password = ? and userRole = ?", entity.getUserName(), entity.getPassword(), entity.getUserRole());
+        if(rst.next()){
+            return 1;
+        }
+        return 0;
+    }
 }

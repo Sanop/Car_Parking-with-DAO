@@ -14,6 +14,12 @@ public class Users implements SuperEntity {
     public Users() {
     }
 
+    public Users(String password, String userName, String userRole) {
+        this.password = password;
+        this.userName = userName;
+        this.userRole = userRole;
+    }
+
     public Users(String id, String name, String nic, String address, String contact, String email, String password, String userName, String userRole) {
         this.id = id;
         this.name = name;

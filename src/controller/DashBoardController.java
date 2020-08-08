@@ -468,7 +468,7 @@ public class DashBoardController {
     private void loadUserCombo() {
         ObservableList<String> items = cmbUserRole.getItems();
         items.add("Admin");
-        items.add("Receptionist");
+        items.add("Reception");
     }
 
     private void commonRegisterNewUser(boolean flag) {

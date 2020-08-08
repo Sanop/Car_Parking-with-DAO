@@ -21,14 +21,6 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </JFXButton>
-      <Label fx:id="lblRegister" layoutX="101.0" layoutY="374.0" onMouseClicked="#lblRegisterOnMouseClicked" text="R e g i s t e r" textFill="#2b00ff" underline="true">
-         <font>
-            <Font size="11.0" />
-         </font>
-         <cursor>
-            <Cursor fx:constant="HAND" />
-         </cursor>
-      </Label>
       <JFXTextField fx:id="txtUserName" focusColor="#756805" labelFloat="true" layoutX="21.0" layoutY="213.0" prefHeight="26.0" prefWidth="240.0" promptText="User Name" />
       <JFXPasswordField fx:id="txtPassword" focusColor="#756805" labelFloat="true" layoutX="21.0" layoutY="260.0" prefHeight="26.0" prefWidth="240.0" promptText="Password" />
       <Label layoutX="75.0" prefHeight="39.0" prefWidth="133.0" text="Parking_P">

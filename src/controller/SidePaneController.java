@@ -8,23 +8,23 @@ public class SidePaneController {
     public AnchorPane pane;
     public JFXButton btnMangeCustomers;
     public JFXButton btnHandleCarPark;
-    public JFXButton btnMangePackages;
-    public JFXButton btnManageCarCells;
     public JFXButton btnRegisterNewUser;
     public JFXButton btnSettings;
     public JFXButton btnLogout;
     public JFXButton btnHandlePackages;
 
+    public void initialize(){
+        String userRole = LoginController.userRole;
+
+        if(userRole.equals("Reception")){
+            btnSettings.setDisable(true);
+            btnRegisterNewUser.setDisable(true);
+        }
+    }
     public void btnMangeCustomersOnAction(ActionEvent actionEvent) {
     }
 
     public void btnHandleCarParkOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnMangePackageOnAction(ActionEvent actionEvent) {
-    }
-
-    public void btnManageCarCellsOnAction(ActionEvent actionEvent) {
     }
 
     public void btnRegisterNewUserOnAction(ActionEvent actionEvent) {

@@ -55,4 +55,9 @@ public class UsersBOImpl implements UsersBO {
             return "U"+newID;
         }
     }
+
+    @Override
+    public int searchUserRole(Users entity) throws Exception {
+        return usersDAO.searchUserRole(entity);
+    }
 }
