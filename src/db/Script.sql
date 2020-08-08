@@ -109,3 +109,21 @@ invoice varchar(100)not null,
 constraint foreign key(id)references package(id),
 constraint foreign key(cellid)references carCells(cellid)
 );
+
+create table packageCells(
+cellId varchar(20)primary key,
+status varchar(20)not null
+);
+
+insert into packageCells values ('lblA1','not reserved');
+insert into packageCells values ('lblA2','not reserved');
+insert into packageCells values ('lblB1','not reserved');
+insert into packageCells values ('lblB2','not reserved');
+insert into packageCells values ('lblC1','not reserved');
+insert into packageCells values ('lblC2','not reserved');
+insert into packageCells values ('lblD1','not reserved');
+insert into packageCells values ('lblD2','not reserved');
+insert into packageCells values ('lblE1','not reserved');
+insert into packageCells values ('lblE2','not reserved');
+insert into packageCells values ('lblF1','not reserved');
+insert into packageCells values ('lblF2','not reserved');

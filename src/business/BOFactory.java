@@ -26,6 +26,8 @@ public class BOFactory {
                 return (T) new PaymentBOImpl();
             case PACKAGE:
                 return (T) new PackageBOImpl();
+            case PACKAGE_CELLS:
+                return (T) new PackageCellsBOImpl();
             default:
                 return null;
         }
