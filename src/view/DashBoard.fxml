@@ -232,7 +232,7 @@
             <Label fx:id="lblInDate" layoutX="410.0" layoutY="454.0" prefHeight="16.0" prefWidth="117.0" text="aa" />
             <Label fx:id="lblOutDate" layoutX="419.0" layoutY="480.0" prefHeight="16.0" prefWidth="117.0" text="aa" />
             <Label layoutX="349.0" layoutY="507.0" text="Extra Charge :" />
-            <Label fx:id="lblExtraChargePackage" layoutX="445.0" layoutY="507.0" prefHeight="16.0" prefWidth="117.0" text="aa" />
+            <Label fx:id="lblExtraChargePackage" layoutX="445.0" layoutY="507.0" prefHeight="16.0" prefWidth="117.0" />
             <Label layoutX="587.0" layoutY="457.0" text="Net Payment :">
                <font>
                   <Font size="22.0" />
