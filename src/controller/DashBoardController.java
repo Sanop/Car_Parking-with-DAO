@@ -181,6 +181,7 @@ public class DashBoardController {
     public Label lblUserContactCorrectFormat;
     public Label lblUserEmailCOrrectFormat;
     public Label lblPasswordMatch;
+    public Pane pnlImage;
 
     CustomerBO customerBO = BOFactory.getInstance().getBO(BOType.CUSTOMER);
     CarCellBO carCellBO = BOFactory.getInstance().getBO(BOType.CARCELL);
@@ -389,7 +390,7 @@ public class DashBoardController {
         paneManageCustomers.setVisible(false);
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(true);
-
+        pnlImage.setVisible(false);
         loadPackageSettingCombo();
 
         managePackageCommon();
@@ -436,6 +437,7 @@ public class DashBoardController {
         paneManageCustomers.setVisible(false);
         paneRegisterNewUser.setVisible(true);
         paneSettings.setVisible(false);
+        pnlImage.setVisible(false);
 
         commonRegisterNewUser(true);
 
@@ -504,6 +506,7 @@ public class DashBoardController {
         paneManageCustomers.setVisible(true);
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(false);
+        pnlImage.setVisible(false);
 
         loadCustomerList();
         loadNewCustomerID();
@@ -525,6 +528,7 @@ public class DashBoardController {
         paneManageCustomers.setVisible(false);
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(false);
+        pnlImage.setVisible(false);
 
         setPackageCellColors();
 
@@ -993,6 +997,7 @@ public class DashBoardController {
         paneManageCustomers.setVisible(false);
         paneRegisterNewUser.setVisible(false);
         paneSettings.setVisible(false);
+        pnlImage.setVisible(false);
 
         setCellColors();
         loadCustomerCombo();
