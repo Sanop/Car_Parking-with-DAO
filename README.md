@@ -2,6 +2,11 @@
 
 Parking App project for dealing with Car parking
 
+## Screen Shots
+
+![Screenshot from 2020-09-13 12-59-17](https://user-images.githubusercontent.com/29176380/93012860-38e13d00-f5c1-11ea-87ce-723e01873f54.png)
+
+
 ## Libraries
 
 This project uses a GUI library
